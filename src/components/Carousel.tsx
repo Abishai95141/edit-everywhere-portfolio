@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, PanInfo, useMotionValue, useTransform } from 'framer-motion'; 
-import { Award, Database, Cpu, BarChart, ExternalLink } from 'lucide-react';
 import './Carousel.css';
 
 export interface CarouselItem {
@@ -167,7 +166,6 @@ export default function Carousel({
                 >
                   <div className={`carousel-item-header ${round ? 'round' : ''}`}>
                     <span className="carousel-icon-container">{item.icon}</span>
-                    <ExternalLink className="carousel-external-icon" size={16} />
                   </div>
                   <div className="carousel-item-content">
                     <div className="carousel-item-title">{item.title}</div>
