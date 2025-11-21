@@ -6,7 +6,7 @@ import { StarBorder } from "./StarBorder";
 import profileImage from "@/assets/profile.png";
 const menuItems = [{
   label: "home",
-  href: "#",
+  href: "#home",
   ariaLabel: "Home",
   rotation: -8,
   hoverStyles: {
@@ -15,7 +15,7 @@ const menuItems = [{
   }
 }, {
   label: "about",
-  href: "#",
+  href: "#about",
   ariaLabel: "About",
   rotation: 8,
   hoverStyles: {
@@ -24,7 +24,7 @@ const menuItems = [{
   }
 }, {
   label: "projects",
-  href: "#",
+  href: "#projects",
   ariaLabel: "Projects",
   rotation: 8,
   hoverStyles: {
@@ -33,7 +33,7 @@ const menuItems = [{
   }
 }, {
   label: "blog",
-  href: "#",
+  href: "#blog",
   ariaLabel: "Blog",
   rotation: 8,
   hoverStyles: {
@@ -42,7 +42,7 @@ const menuItems = [{
   }
 }, {
   label: "contact",
-  href: "#",
+  href: "#contact",
   ariaLabel: "Contact",
   rotation: -8,
   hoverStyles: {
@@ -51,14 +51,15 @@ const menuItems = [{
   }
 }];
 export const Hero = () => {
-  return <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Navigation */}
-      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <>
+      {/* Navigation - Fixed at top */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <BubbleMenu logo={<span style={{
         fontWeight: 700
       }} className="font-extrabold text-center px-px mx-0">A</span>} items={menuItems} menuAriaLabel="Toggle navigation" menuBg="#ffffff" menuContentColor="#111111" useFixedPosition={false} animationEase="back.out(1.5)" animationDuration={0.5} staggerDelay={0.12} />
       </div>
 
+      <div id="home" className="relative min-h-screen bg-background overflow-hidden">
       {/* Hero Content */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16 pt-32 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
@@ -144,5 +145,6 @@ export const Hero = () => {
           </motion.div>
         </div>
       </div>
-    </div>;
+    </div>
+  </>;
 };
