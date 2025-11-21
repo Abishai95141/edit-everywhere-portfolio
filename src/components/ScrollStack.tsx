@@ -60,6 +60,7 @@ const ScrollStack = ({
   const cardsRef = useRef<Element[]>([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+  const windowScrollListenerRef = useRef<(() => void) | null>(null);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -203,28 +204,16 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-        infinite: false,
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075
-      });
-
-      lenis.on('scroll', handleScroll);
-
-      const raf = (time: number) => {
-        lenis.raf(time);
-        animationFrameRef.current = requestAnimationFrame(raf);
-      };
-      animationFrameRef.current = requestAnimationFrame(raf);
-
-      lenisRef.current = lenis;
-      return lenis;
+      // Use native window scroll to avoid visual glitches from extra smoothing
+      if (!windowScrollListenerRef.current) {
+        const listener = () => {
+          handleScroll();
+        };
+        windowScrollListenerRef.current = listener;
+        window.addEventListener('scroll', listener, { passive: true });
+      }
+      // No Lenis instance when using window scroll
+      return null;
     } else {
       const scroller = scrollerRef.current;
       if (!scroller) return;
@@ -291,6 +280,10 @@ const ScrollStack = ({
       }
       if (lenisRef.current) {
         lenisRef.current.destroy();
+      }
+      if (windowScrollListenerRef.current) {
+        window.removeEventListener('scroll', windowScrollListenerRef.current);
+        windowScrollListenerRef.current = null;
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
