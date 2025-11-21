@@ -1,68 +1,61 @@
-import { Award, Database, Cpu, BarChart, Shield, Cloud } from 'lucide-react';
+import { BarChart, Cpu, Lightbulb, FileQuestion, Cloud } from 'lucide-react';
 import Carousel, { CarouselItem } from './Carousel';
 
 const certifications: CarouselItem[] = [
   {
     id: 1,
-    title: "AWS Certified Solutions Architect",
-    description: "Professional certification demonstrating expertise in designing distributed systems on AWS",
-    icon: <Cloud />,
-    link: "https://aws.amazon.com/certification/certified-solutions-architect-professional/"
+    title: "Google Data Analytics",
+    description: "Professional Certificate by Google",
+    icon: <BarChart />,
+    link: "https://coursera.org/share/d581dd6c0dfa04f6c554d94ae0ae8cb4"
   },
   {
     id: 2,
-    title: "Google Data Analytics Professional",
-    description: "Comprehensive certification covering data analysis, visualization, and business intelligence",
-    icon: <BarChart />,
-    link: "https://www.coursera.org/professional-certificates/google-data-analytics"
+    title: "Multimodal RAG using Vertex AI Gemini API",
+    description: "Advanced retrieval augmented generation techniques",
+    icon: <Cpu />,
+    link: "https://coursera.org/share/97a61359cf245374722c9dd71985b4b3"
   },
   {
     id: 3,
-    title: "Machine Learning Specialization",
-    description: "Deep learning and neural networks certification from Stanford University and DeepLearning.AI",
-    icon: <Cpu />,
-    link: "https://www.coursera.org/specializations/machine-learning-introduction"
+    title: "Generative AI for Everyone",
+    description: "Comprehensive overview of GenAI landscape",
+    icon: <Lightbulb />,
+    link: "https://coursera.org/share/1c2ab8add8bed5e3bae797e0112cbd5b"
   },
   {
     id: 4,
-    title: "PostgreSQL Database Administration",
-    description: "Advanced database design, optimization, and administration certification",
-    icon: <Database />,
-    link: "https://www.postgresql.org/docs/current/"
+    title: "Ask Questions to Make Data-Driven Decisions",
+    description: "Analytical thinking and questioning strategies",
+    icon: <FileQuestion />,
+    link: "https://coursera.org/share/358b1e3dcce18d6b68b0c207ae1b492e"
   },
   {
     id: 5,
-    title: "Certified Ethical Hacker (CEH)",
-    description: "Industry-recognized cybersecurity certification covering penetration testing and security",
-    icon: <Shield />,
-    link: "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/"
-  },
-  {
-    id: 6,
-    title: "Professional Scrum Master",
-    description: "Agile methodology and Scrum framework certification for project management",
-    icon: <Award />,
-    link: "https://www.scrum.org/professional-scrum-master-i-certification"
+    title: "Introduction to Vertex AI Studio",
+    description: "Cloud-based model development and deployment",
+    icon: <Cloud />,
+    link: "https://coursera.org/share/af61bcc3fb6c7cc6c9c895f6d195882b"
   }
 ];
 
 export const CertificationsSection = () => {
   return (
-    <section className="py-24 px-6 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="min-h-[80vh] py-24 px-6 bg-background relative overflow-hidden flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-4">
             Certifications
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Professional certifications and credentials showcasing expertise across various domains
+            Professional credentials and continuous learning achievements
           </p>
         </div>
 
         <div className="flex justify-center">
           <Carousel
             items={certifications}
-            baseWidth={400}
+            baseWidth={600}
             autoplay={true}
             autoplayDelay={4000}
             pauseOnHover={true}
@@ -70,7 +63,7 @@ export const CertificationsSection = () => {
           />
         </div>
 
-        <div className="text-center mt-8 text-sm text-muted-foreground">
+        <div className="text-center mt-12 text-sm text-muted-foreground">
           <p>Drag or swipe to explore • Click cards to view credentials</p>
         </div>
       </div>
