@@ -82,14 +82,14 @@ export const ProjectsSection = () => {
           baseScale={0.92}
         >
           {projects.map((project, index) => (
-            <ScrollStackItem key={index}>
-              <div 
-                className={`h-full flex flex-col md:flex-row gap-8 ${
+            <ScrollStackItem key={index} itemClassName="!p-0">
+              <div
+                className={`h-full flex flex-col md:flex-row gap-8 p-8 md:p-12 ${
                   project.bgColor === "black" ? "bg-black" : "bg-zinc-800"
                 } text-white`}
               >
                 {/* Left Column - Content */}
-                <div className="flex-1 flex flex-col justify-between">
+                <div className="flex-1 flex flex-col justify-between min-w-0">
                   <div>
                     <h3 className="text-3xl md:text-4xl font-bold mb-6">
                       {project.title}
@@ -127,7 +127,7 @@ export const ProjectsSection = () => {
                 </div>
 
                 {/* Right Column - Image */}
-                <div className="flex-1 overflow-hidden rounded-lg">
+                <div className="flex-1 overflow-hidden rounded-lg min-w-0">
                   <img 
                     src={project.image}
                     alt={`${project.title} preview`}
