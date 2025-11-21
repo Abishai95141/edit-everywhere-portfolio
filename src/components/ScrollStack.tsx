@@ -6,35 +6,55 @@ interface ScrollStackItemProps {
   itemClassName?: string;
 }
 
+// FIX 1: Modified Item Structure
+// We now have an Outer Wrapper (for Stickiness) and Inner Wrapper (for Animation)
 export const ScrollStackItem = ({ children, itemClassName = '' }: ScrollStackItemProps) => (
-  <div
-    className={`scroll-stack-card ${itemClassName}`.trim()}
+  <div 
+    className="scroll-stack-card-wrapper"
     style={{
-      width: '100%',
-      height: '600px', // Ensure this is enough to view content
-      padding: '2rem',
-      borderRadius: '24px',
-      overflow: 'hidden',
+      // This wrapper handles the layout and sticking ONLY
       boxSizing: 'border-box',
-      backgroundColor: 'white', // Added for visibility against overlap
-      boxShadow: '0 4px 24px rgba(0,0,0,0.1)', // Added for depth
+      position: 'relative',
+      zIndex: 1,
+      width: '100%',
+      // Height must be preserved here to keep scroll flow correct
+      height: '600px', 
     }}
   >
-    {children}
+    <div
+      className={`scroll-stack-card-inner ${itemClassName}`.trim()}
+      style={{
+        width: '100%',
+        height: '100%',
+        padding: '2rem',
+        borderRadius: '24px',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        backgroundColor: 'white',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.1)',
+        // GPU Hardware Acceleration settings
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {children}
+    </div>
   </div>
 );
 
 interface ScrollStackProps {
   children: ReactNode;
   className?: string;
-  itemDistance?: number; // Margin between cards before they stack
-  itemScale?: number;    // How much they shrink
-  itemStackDistance?: number; // The visible offset when stacked (e.g., 10px peeking out)
-  stackPosition?: string; // Top offset in %
+  itemDistance?: number;
+  itemScale?: number;
+  itemStackDistance?: number;
+  stackPosition?: string;
   scaleEndPosition?: string;
   baseScale?: number;
   rotationAmount?: number;
   useWindowScroll?: boolean;
+  onStackComplete?: () => void;
 }
 
 const ScrollStack = ({
@@ -44,17 +64,19 @@ const ScrollStack = ({
   itemScale = 0.05,
   itemStackDistance = 25,
   stackPosition = '15%',
-  scaleEndPosition = '8%',
+  scaleEndPosition = '50%',
   baseScale = 1,
   rotationAmount = 0,
   useWindowScroll = true,
+  onStackComplete,
 }: ScrollStackProps) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
-  const cardsRef = useRef<HTMLElement[]>([]);
   
-  // Cache rects to avoid thrashing layout on every scroll frame
-  const cardsRectsRef = useRef<{ top: number }[]>([]); 
+  // We track the Wrappers for position logic
+  const wrappersRef = useRef<HTMLElement[]>([]); 
+  const wrappersRectsRef = useRef<{ top: number }[]>([]); 
+  const stackCompletedRef = useRef(false);
 
   const parsePercentage = useCallback((value: string | number, containerHeight: number) => {
     if (typeof value === 'string' && value.includes('%')) {
@@ -68,92 +90,92 @@ const ScrollStack = ({
     const scrollTop = useWindowScroll ? window.scrollY : scrollerRef.current?.scrollTop || 0;
     
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
-    const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+    const scaleDistancePx = parsePercentage(scaleEndPosition, containerHeight);
 
-    cardsRef.current.forEach((card, i) => {
-      if (!card) return;
+    let allStacked = true;
+
+    wrappersRef.current.forEach((wrapper, i) => {
+      if (!wrapper) return;
       
-      // Use cached top position to prevent reflows
-      const originalTop = cardsRectsRef.current[i]?.top || 0;
-      
-      // The point where the card visually hits the "stack" position
-      // Note: We add (i * itemStackDistance) because each card sticks slightly lower than the last
+      // Find the inner element to animate
+      // FIX 2: We target the child, not the sticky wrapper
+      const targetCard = wrapper.firstElementChild as HTMLElement;
+      if (!targetCard) return;
+
+      const originalTop = wrappersRectsRef.current[i]?.top || 0;
       const stickPoint = originalTop - stackPositionPx - (i * itemStackDistance);
-      
-      // Calculate how far past the stick point we are
       const distFromStick = scrollTop - stickPoint;
       
-      // Only start animating (scaling) after it hits the stick point
       if (distFromStick > 0) {
-        // Calculate progress based on how far we've scrolled past the stick point
-        // You can adjust the divisor (500) to control how fast it shrinks
-        const progress = Math.min(1, distFromStick / 500);
+        const rawProgress = distFromStick / scaleDistancePx;
+        const progress = Math.min(1, rawProgress);
         
         const targetScale = baseScale - (progress * itemScale);
         const rotation = rotationAmount ? progress * rotationAmount : 0;
         
-        // simple scale and rotate, NO TRANSLATE Y
-        card.style.transform = `scale(${targetScale}) rotate(${rotation}deg)`;
-        card.style.filter = `blur(${progress * 2}px)`; // Optional blur
+        // FIX 3: Apply transform to Inner Card only
+        targetCard.style.transform = `scale(${targetScale}) rotate(${rotation}deg)`;
+        
+        if (progress < 1) allStacked = false;
       } else {
-        // Reset if scrolling back up
-        card.style.transform = `scale(${baseScale}) translateZ(0)`;
-        card.style.filter = 'none';
+        targetCard.style.transform = `scale(${baseScale})`;
+        allStacked = false;
       }
     });
-  }, [stackPosition, scaleEndPosition, baseScale, itemScale, itemStackDistance, rotationAmount, parsePercentage, useWindowScroll]);
+
+    if (allStacked && !stackCompletedRef.current) {
+      stackCompletedRef.current = true;
+      onStackComplete?.();
+    } else if (!allStacked && stackCompletedRef.current) {
+      stackCompletedRef.current = false;
+    }
+
+  }, [stackPosition, scaleEndPosition, baseScale, itemScale, itemStackDistance, rotationAmount, parsePercentage, useWindowScroll, onStackComplete]);
 
   const handleScroll = useCallback(() => {
+    // Using RAF decouples the scroll event from the paint, smoothing the visual
     requestAnimationFrame(updateCardTransforms);
   }, [updateCardTransforms]);
 
-  // 1. Setup Layout and Initial Positions
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const cards = Array.from(
-      scroller.querySelectorAll('.scroll-stack-card')
+    // Grab the WRAPPERS
+    const wrappers = Array.from(
+      scroller.querySelectorAll('.scroll-stack-card-wrapper')
     ) as HTMLElement[];
-    cardsRef.current = cards;
+    wrappersRef.current = wrappers;
 
     const containerHeight = window.innerHeight;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
 
-    // Initialize Sticky Positions
-    cards.forEach((card, i) => {
-      card.style.position = 'sticky';
-      // CRITICAL FIX: Set the `top` to include the stack offset. 
-      // This lets CSS handle the "stacking" height naturally.
-      card.style.top = `${stackPositionPx + (i * itemStackDistance)}px`;
+    wrappers.forEach((wrapper, i) => {
+      // FIX 4: CSS Sticky is applied to the WRAPPER
+      wrapper.style.position = 'sticky';
+      wrapper.style.top = `${stackPositionPx + (i * itemStackDistance)}px`;
       
-      // Add margin to bottom to create scroll space between cards
-      if (i < cards.length - 1) {
-        card.style.marginBottom = `${itemDistance}px`;
+      if (i < wrappers.length - 1) {
+        wrapper.style.marginBottom = `${itemDistance}px`;
       }
-
-      card.style.transformOrigin = 'top center';
-      card.style.willChange = 'transform';
     });
 
-    // Cache the initial positions relative to the document
-    // This prevents reading rects inside the scroll loop
     const cacheRects = () => {
-      cardsRectsRef.current = cards.map(card => ({
-        // Get offset relative to document
-        top: card.getBoundingClientRect().top + window.scrollY
+      wrappersRectsRef.current = wrappers.map(wrapper => ({
+        top: wrapper.getBoundingClientRect().top + window.scrollY
       }));
+      updateCardTransforms();
     };
 
-    cacheRects();
-    window.addEventListener('resize', cacheRects); // Recalculate on resize
+    // Slight delay allows browser to settle layout before we measure
+    setTimeout(cacheRects, 100);
+    window.addEventListener('resize', cacheRects);
 
     return () => {
       window.removeEventListener('resize', cacheRects);
     };
-  }, [itemDistance, itemStackDistance, stackPosition, parsePercentage]);
+  }, [itemDistance, itemStackDistance, stackPosition, parsePercentage, updateCardTransforms]);
 
-  // 2. Setup Scroll Listeners
   useEffect(() => {
     const scroller = scrollerRef.current;
     
@@ -161,7 +183,6 @@ const ScrollStack = ({
       window.addEventListener('scroll', handleScroll, { passive: true });
       return () => window.removeEventListener('scroll', handleScroll);
     } else {
-      // Custom Lenis implementation
       if (!scroller) return;
       const lenis = new Lenis({
         wrapper: scroller,
@@ -191,7 +212,6 @@ const ScrollStack = ({
       style={{
         position: 'relative', 
         width: '100%',
-        // If not using window scroll, we need fixed height and overflow
         ...(useWindowScroll ? {} : { height: '100vh', overflow: 'hidden' })
       }}
     >
