@@ -32,12 +32,21 @@ const menuItems = [{
     textColor: "#ffffff"
   }
 }, {
-  label: "blog",
-  href: "#blog",
-  ariaLabel: "Blog",
+  label: "experience",
+  href: "#experience",
+  ariaLabel: "Experience",
   rotation: 8,
   hoverStyles: {
     bgColor: "#ef4444",
+    textColor: "#ffffff"
+  }
+}, {
+  label: "certifications",
+  href: "#certifications",
+  ariaLabel: "Certifications",
+  rotation: -8,
+  hoverStyles: {
+    bgColor: "#a855f7",
     textColor: "#ffffff"
   }
 }, {

@@ -41,7 +41,7 @@ const certifications: CarouselItem[] = [
 
 export const CertificationsSection = () => {
   return (
-    <section className="min-h-[80vh] py-24 px-6 bg-background relative overflow-hidden flex items-center">
+    <section id="certifications" className="min-h-[80vh] py-24 px-6 bg-background relative overflow-hidden flex items-center">
       <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-4">
