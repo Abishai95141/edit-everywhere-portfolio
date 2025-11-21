@@ -83,10 +83,14 @@ export const ProjectsSection = () => {
         >
           {projects.map((project, index) => (
             <ScrollStackItem key={index} itemClassName="!p-0">
-              <div
+              <motion.div
                 className={`h-full flex flex-col md:flex-row gap-8 p-8 md:p-12 ${
                   project.bgColor === "black" ? "bg-black" : "bg-zinc-800"
                 } text-white`}
+                whileHover={{ 
+                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4)",
+                  transition: { duration: 0.3 }
+                }}
               >
                 {/* Left Column - Content */}
                 <div className="flex-1 flex flex-col justify-between min-w-0">
@@ -128,13 +132,15 @@ export const ProjectsSection = () => {
 
                 {/* Right Column - Image */}
                 <div className="flex-1 overflow-hidden rounded-lg min-w-0">
-                  <img 
+                  <motion.img 
                     src={project.image}
                     alt={`${project.title} preview`}
                     className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                   />
                 </div>
-              </div>
+              </motion.div>
             </ScrollStackItem>
           ))}
         </ScrollStack>
