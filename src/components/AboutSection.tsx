@@ -13,14 +13,20 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section className="container mx-auto px-4 md:px-8 lg:px-16 py-24">
+    <section id="about" className="container mx-auto px-4 md:px-8 lg:px-16 py-24">
       {/* Section Header */}
-      <div className="mb-16">
+      <motion.div 
+        className="mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
           About Me
         </h2>
         <div className="w-20 h-1 bg-foreground"></div>
-      </div>
+      </motion.div>
 
       {/* Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
