@@ -3,7 +3,6 @@ import { BubbleMenu } from "./BubbleMenu";
 import { FuzzyText } from "./FuzzyText";
 import { DecryptedText } from "./DecryptedText";
 import { StarBorder } from "./StarBorder";
-import { About } from "./About";
 import profileImage from "@/assets/profile.png";
 const menuItems = [{
   label: "home",
@@ -143,8 +142,5 @@ export const Hero = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* About Section */}
-      <About />
     </div>;
 };
