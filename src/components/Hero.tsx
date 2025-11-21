@@ -53,9 +53,11 @@ const menuItems = [{
 export const Hero = () => {
   return <div className="relative min-h-screen bg-background overflow-hidden">
       {/* Navigation */}
-      <BubbleMenu logo={<span style={{
-      fontWeight: 700
-    }} className="font-extrabold text-center px-px mx-0">A</span>} items={menuItems} menuAriaLabel="Toggle navigation" menuBg="#ffffff" menuContentColor="#111111" useFixedPosition={false} animationEase="back.out(1.5)" animationDuration={0.5} staggerDelay={0.12} />
+      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <BubbleMenu logo={<span style={{
+        fontWeight: 700
+      }} className="font-extrabold text-center px-px mx-0">A</span>} items={menuItems} menuAriaLabel="Toggle navigation" menuBg="#ffffff" menuContentColor="#111111" useFixedPosition={false} animationEase="back.out(1.5)" animationDuration={0.5} staggerDelay={0.12} />
+      </div>
 
       {/* Hero Content */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16 pt-32 pb-16">
