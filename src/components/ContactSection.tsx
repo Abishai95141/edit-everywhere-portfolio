@@ -25,7 +25,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen bg-background py-20 px-6 md:px-12 lg:px-24 flex items-center">
+    <section id="contact" className="min-h-screen bg-background py-20 px-6 md:px-12 lg:px-24 flex items-center">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Side - Text & Links */}

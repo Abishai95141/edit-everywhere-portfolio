@@ -10,6 +10,8 @@ interface StarBorderProps {
   onClick?: () => void;
   href?: string;
   style?: CSSProperties;
+  target?: string;
+  rel?: string;
 }
 
 export const StarBorder = ({
@@ -21,6 +23,8 @@ export const StarBorder = ({
   onClick,
   href,
   style,
+  target,
+  rel,
 }: StarBorderProps) => {
   const Component = motion[as] as any;
 
@@ -29,6 +33,8 @@ export const StarBorder = ({
       className={`relative px-8 py-3 rounded-full overflow-hidden group ${className}`}
       onClick={onClick}
       href={href}
+      target={target}
+      rel={rel}
       style={{
         border: `2px solid ${color === "white" ? "#ffffff" : "#000000"}`,
         ...style,
