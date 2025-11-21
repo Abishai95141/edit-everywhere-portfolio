@@ -99,10 +99,24 @@ export const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <StarBorder as="button" className="bg-background text-foreground hover:bg-foreground hover:text-background transition-colors duration-300" color="black" speed="2.5s">
+              <StarBorder 
+                as="a" 
+                href="https://docs.google.com/document/d/1AsicPsBRfFuWLMxxE7iLOitjtabVr4zJ/edit?usp=sharing&ouid=104354809342922244957&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-background text-foreground hover:bg-foreground hover:text-background transition-colors duration-300" 
+                color="black" 
+                speed="2.5s"
+              >
                 My Resume
               </StarBorder>
-              <StarBorder as="button" className="bg-foreground text-background hover:bg-background hover:text-foreground transition-colors duration-300" color="black" speed="2.5s">
+              <StarBorder 
+                as="a" 
+                href="#contact"
+                className="bg-foreground text-background hover:bg-background hover:text-foreground transition-colors duration-300" 
+                color="black" 
+                speed="2.5s"
+              >
                 Contact Me
               </StarBorder>
             </div>
