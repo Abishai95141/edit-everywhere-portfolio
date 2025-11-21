@@ -259,16 +259,14 @@ const ScrollStack = ({
     const transformsCache = lastTransformsRef.current;
 
     cards.forEach((card, i) => {
-      (card as HTMLElement).style.position = 'sticky';
-      (card as HTMLElement).style.top = stackPosition;
+      (card as HTMLElement).style.position = 'relative';
       if (i < cards.length - 1) {
         (card as HTMLElement).style.marginBottom = `${itemDistance}px`;
       }
-      (card as HTMLElement).style.willChange = 'transform, filter';
+      (card as HTMLElement).style.willChange = 'transform';
       (card as HTMLElement).style.transformOrigin = 'top center';
       (card as HTMLElement).style.backfaceVisibility = 'hidden';
       (card as HTMLElement).style.transform = 'translateZ(0)';
-      (card as HTMLElement).style.perspective = '1000px';
     });
 
     setupLenis();
