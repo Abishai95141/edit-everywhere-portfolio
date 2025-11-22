@@ -21,9 +21,9 @@ export const AboutSection = () => {
     name: "Fine-tuning & RAG",
     icon: Settings
   }];
-  return <section id="about" className="container mx-auto px-4 md:px-8 lg:px-16 py-24">
+  return <section id="about" className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-16 sm:py-20 md:py-24">
       {/* Section Header */}
-      <motion.div className="mb-16" initial={{
+      <motion.div className="mb-12 sm:mb-16" initial={{
       opacity: 0,
       y: 30
     }} whileInView={{
@@ -34,14 +34,14 @@ export const AboutSection = () => {
     }} transition={{
       duration: 0.6
     }}>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
           About Me
         </h2>
         <div className="w-20 h-1 bg-foreground"></div>
       </motion.div>
 
       {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Large Card - Who I Am */}
         <motion.div initial={{
         opacity: 0,

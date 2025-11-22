@@ -41,13 +41,13 @@ const certifications: CarouselItem[] = [
 
 export const CertificationsSection = () => {
   return (
-    <section id="certifications" className="min-h-[80vh] py-24 px-6 bg-background relative overflow-hidden flex items-center">
+    <section id="certifications" className="min-h-[80vh] py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-background relative overflow-hidden flex items-center">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             Certifications
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-4">
             Professional credentials and continuous learning achievements
           </p>
         </div>
@@ -63,7 +63,7 @@ export const CertificationsSection = () => {
           />
         </div>
 
-        <div className="text-center mt-12 text-sm text-muted-foreground">
+        <div className="text-center mt-8 sm:mt-12 text-xs sm:text-sm text-muted-foreground px-4">
           <p>Drag or swipe to explore • Click cards to view credentials</p>
         </div>
       </div>

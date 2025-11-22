@@ -63,24 +63,24 @@ export const ProjectsSection = () => {
   }));
 
   return (
-    <section id="projects" className="py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-8 lg:px-16">
+    <section id="projects" className="py-16 sm:py-20 md:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         {/* Section Header */}
         <motion.div 
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             Selected Projects
           </h2>
           <div className="w-20 h-1 bg-foreground"></div>
         </motion.div>
 
         {/* Infinite Menu Container - Height is required for the canvas */}
-        <div className="w-full h-[600px] md:h-[800px] relative rounded-xl overflow-hidden border border-border/50 bg-white">
+        <div className="w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] relative rounded-xl overflow-hidden border border-border/50 bg-white">
           <InfiniteMenu items={menuItems} />
         </div>
       </div>
