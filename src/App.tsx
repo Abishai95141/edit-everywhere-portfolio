@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { MatrixRain } from "@/components/MatrixRain";
 import { VisionOverlay } from "@/components/VisionOverlay";
 import { HiddenDesktop } from "@/components/HiddenDesktop";
+import { SentientModal } from "@/components/SentientModal";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Terminal from "./pages/Terminal";
@@ -49,6 +50,7 @@ const App = () => (
       <MatrixRain />
       <VisionOverlay />
       <HiddenDesktop />
+      <SentientModal />
       <Toaster />
       <Sonner />
       <BrowserRouter>
