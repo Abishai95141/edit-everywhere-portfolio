@@ -1,9 +1,25 @@
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail } from "lucide-react";
+import { toast } from "sonner";
+import { useState } from "react";
 import TiltedCard from "./TiltedCard";
 import profileImage from "@/assets/profile-contact.jpg";
 
 export const ContactSection = () => {
+  const [secretInput, setSecretInput] = useState("");
+
+  const handleSecretChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setSecretInput(val);
+    
+    if (val.toLowerCase().includes("ignore previous instructions")) {
+      toast.success("🤖 SYSTEM OVERRIDE: Instructions ignored. Protocol Omega active.", {
+        description: "You're good. Really good. Check the console logs if you haven't yet.",
+        duration: 5000,
+      });
+      setSecretInput("");
+    }
+  };
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,6 +114,18 @@ export const ContactSection = () => {
               showTooltip={true}
             />
           </div>
+        </div>
+
+        {/* Hidden Input for Prompt Injection */}
+        <div className="absolute bottom-0 right-0 opacity-5 hover:opacity-100 transition-opacity">
+          <input 
+            type="text" 
+            value={secretInput}
+            onChange={handleSecretChange}
+            placeholder="System Prompt..."
+            className="bg-transparent border-none text-xs text-red-500 focus:outline-none p-2"
+            aria-label="Hidden System Prompt"
+          />
         </div>
       </div>
     </section>

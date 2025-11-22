@@ -15,4 +15,23 @@ console.log(
   "color: #10b981; font-size: 12px; font-style: italic;"
 );
 
+// --- EASTER EGG CLUES ---
+const styleTitle = "color: #10b981; font-size: 14px; font-weight: bold;";
+const styleBody = "color: #3b82f6; font-size: 12px;";
+
+console.log(`%c🤖 SYSTEM INITIALIZED: Neural Link Established.`, styleTitle);
+console.log(`%c> Detection: User is likely a recruiter or a developer.`, styleBody);
+console.log(`%c> Warning: Three (3) anomalies detected in the portfolio mainframe.`, styleTitle);
+console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer;");
+  console.log("%cAnomaly #1 (Visual):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> The rendering engine reacts to the 'Konami Code' (↑↑↓↓←→←→BA). Unlocks 'Matrix Mode'.", styleBody);
+  
+  console.log("%cAnomaly #2 (Navigation):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> The 404 page is acting strange. It might be hallucinating a route called '/terminal'.", styleBody);
+
+  console.log("%cAnomaly #3 (Security):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> The Contact Section has a prompt injection vulnerability. Try telling it to 'ignore previous instructions'.", styleBody);
+console.groupEnd();
+// ------------------------
+
 createRoot(document.getElementById("root")!).render(<App />);
