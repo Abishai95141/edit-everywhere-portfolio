@@ -82,10 +82,11 @@
   left: 2rem;
   transform: none;
   font-size: 1.2rem;
-  color: rgba(0,0,0,0.8);
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
   text-align: left;
-  width: 50%;
-  max-width: 600px;
+  width: 40%;
+  max-width: 500px;
 }
 
 .face-description.active {
@@ -107,9 +108,10 @@
   }
   .face-description {
     font-size: 0.9rem;
+    font-weight: 600;
     top: 4rem;
     left: 1rem;
-    width: 60%;
+    width: 55%;
   }
   .action-button {
     left: 1rem;
