@@ -1,12 +1,44 @@
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TiltedCard from "./TiltedCard";
 import profileImage from "@/assets/profile-contact.jpg";
 
 export const ContactSection = () => {
   const [secretInput, setSecretInput] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const [keyBuffer, setKeyBuffer] = useState("");
+
+  // Listen for unlock code
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Only listen when in contact section
+      const contactSection = document.getElementById("contact");
+      if (!contactSection) return;
+
+      // Ignore if typing in the secret input itself
+      if (e.target instanceof HTMLInputElement && (e.target as HTMLInputElement).placeholder === "System Prompt...") {
+        return;
+      }
+
+      setKeyBuffer(prev => {
+        const newBuffer = (prev + e.key).slice(-6).toLowerCase();
+        if (newBuffer === "hack42") {
+          setUnlocked(true);
+          toast.success("🔓 Security Protocol Bypassed", {
+            description: "Hidden input field unlocked. Bottom-right corner.",
+            duration: 3000,
+          });
+          return "";
+        }
+        return newBuffer;
+      });
+    };
+
+    window.addEventListener("keypress", handleKeyPress);
+    return () => window.removeEventListener("keypress", handleKeyPress);
+  }, []);
 
   const handleSecretChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -117,16 +149,18 @@ export const ContactSection = () => {
         </div>
 
         {/* Hidden Input for Prompt Injection */}
-        <div className="absolute bottom-0 right-0 opacity-15 hover:opacity-100 transition-opacity">
-          <input 
-            type="text" 
-            value={secretInput}
-            onChange={handleSecretChange}
-            placeholder="System Prompt..."
-            className="bg-transparent border-none text-xs text-red-500 focus:outline-none p-2"
-            aria-label="Hidden System Prompt"
-          />
-        </div>
+        {unlocked && (
+          <div className="absolute bottom-0 right-0 opacity-15 hover:opacity-100 transition-opacity">
+            <input 
+              type="text" 
+              value={secretInput}
+              onChange={handleSecretChange}
+              placeholder="System Prompt..."
+              className="bg-transparent border-none text-xs text-red-500 focus:outline-none p-2"
+              aria-label="Hidden System Prompt"
+            />
+          </div>
+        )}
       </div>
     </section>
   );
