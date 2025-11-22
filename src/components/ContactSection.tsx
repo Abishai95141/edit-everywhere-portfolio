@@ -150,14 +150,15 @@ export const ContactSection = () => {
 
         {/* Hidden Input for Prompt Injection */}
         {unlocked && (
-          <div className="absolute bottom-0 right-0 opacity-15 hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-0 right-0 opacity-100 transition-opacity animate-in fade-in duration-500">
             <input 
               type="text" 
               value={secretInput}
               onChange={handleSecretChange}
               placeholder="System Prompt..."
-              className="bg-transparent border-none text-xs text-red-500 focus:outline-none p-2"
+              className="bg-transparent border border-red-500/30 text-xs text-red-500 focus:outline-none p-2 rounded"
               aria-label="Hidden System Prompt"
+              autoFocus
             />
           </div>
         )}
