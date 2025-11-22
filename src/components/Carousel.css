@@ -107,6 +107,35 @@
   line-height: 1.4;
 }
 
+@media (max-width: 640px) {
+  .carousel-item-title {
+    font-size: 1.1rem;
+  }
+  
+  .carousel-item-description {
+    font-size: 0.875rem;
+  }
+  
+  .carousel-item-content {
+    padding: 1.25rem;
+  }
+  
+  .carousel-item-header {
+    padding: 1.25rem;
+    min-height: 100px;
+  }
+  
+  .carousel-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .carousel-icon-container svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .carousel-item-description {
   color: #666;
   font-size: 1rem;

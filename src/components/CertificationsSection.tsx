@@ -1,5 +1,6 @@
 import { BarChart, Cpu, Lightbulb, FileQuestion, Cloud } from 'lucide-react';
 import Carousel, { CarouselItem } from './Carousel';
+import { useState, useEffect } from 'react';
 
 const certifications: CarouselItem[] = [
   {
@@ -40,6 +41,27 @@ const certifications: CarouselItem[] = [
 ];
 
 export const CertificationsSection = () => {
+  const [carouselWidth, setCarouselWidth] = useState(600);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth < 640) {
+        // Mobile: smaller width
+        setCarouselWidth(Math.min(window.innerWidth - 32, 340));
+      } else if (window.innerWidth < 768) {
+        // Small tablets
+        setCarouselWidth(Math.min(window.innerWidth - 48, 500));
+      } else {
+        // Desktop
+        setCarouselWidth(600);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
   return (
     <section id="certifications" className="min-h-[80vh] py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-background relative overflow-hidden flex items-center">
       <div className="max-w-7xl mx-auto w-full">
@@ -55,7 +77,7 @@ export const CertificationsSection = () => {
         <div className="flex justify-center">
           <Carousel
             items={certifications}
-            baseWidth={600}
+            baseWidth={carouselWidth}
             autoplay={true}
             autoplayDelay={4000}
             pauseOnHover={true}
