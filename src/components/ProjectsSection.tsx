@@ -80,7 +80,7 @@ export const ProjectsSection = () => {
         </motion.div>
 
         {/* Infinite Menu Container - Height is required for the canvas */}
-        <div className="w-full h-[600px] md:h-[800px] relative rounded-xl overflow-hidden border border-border/50 bg-black/5">
+        <div className="w-full h-[600px] md:h-[800px] relative rounded-xl overflow-hidden border border-border/50 bg-white">
           <InfiniteMenu items={menuItems} />
         </div>
       </div>
