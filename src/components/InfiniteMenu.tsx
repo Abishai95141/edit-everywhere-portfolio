@@ -679,7 +679,7 @@ class InfiniteGridMenu {
   }
 
   #updateCameraMatrix() {
-    mat4.targetTo(this.camera.matrix, this.camera.position, [-1.2, 0, 0], this.camera.up);
+    mat4.targetTo(this.camera.matrix, this.camera.position, [-0.3, 0, 0], this.camera.up);
     mat4.invert(this.camera.matrices.view, this.camera.matrix);
   }
 
