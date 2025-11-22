@@ -60,9 +60,12 @@
   color: black;
   text-shadow: none;
   text-align: left;
-  width: 50%;
+  width: fit-content;
   max-width: 600px;
   pointer-events: none;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
 .face-title.active {
@@ -85,8 +88,11 @@
   font-weight: 600;
   color: rgba(0,0,0,0.9);
   text-align: left;
-  width: 40%;
+  width: fit-content;
   max-width: 500px;
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
 }
 
 .face-description.active {
