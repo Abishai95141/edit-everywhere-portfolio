@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { MatrixRain } from "@/components/MatrixRain";
+import { VisionOverlay } from "@/components/VisionOverlay";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Terminal from "./pages/Terminal";
@@ -45,6 +46,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <MatrixRain />
+      <VisionOverlay />
       <Toaster />
       <Sonner />
       <BrowserRouter>

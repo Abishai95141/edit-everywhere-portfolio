@@ -21,7 +21,7 @@ const styleBody = "color: #3b82f6; font-size: 12px;";
 
 console.log(`%c🤖 SYSTEM INITIALIZED: Neural Link Established.`, styleTitle);
 console.log(`%c> Detection: User is likely a recruiter or a developer.`, styleBody);
-console.log(`%c> Warning: Three (3) anomalies detected in the portfolio mainframe.`, styleTitle);
+console.log(`%c> Warning: Four (4) anomalies detected in the portfolio mainframe.`, styleTitle);
 console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer;");
   console.log("%cAnomaly #1 (Visual):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The rendering engine reacts to the 'Konami Code' (↑↑↓↓←→←→BA). Unlocks 'Matrix Mode'.", styleBody);
@@ -33,6 +33,10 @@ console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer
   console.log("%c> The Contact Section has a prompt injection vulnerability. Try telling it to 'ignore previous instructions'.", styleBody);
   console.log("%c> Step 1: Go to the Contact Section and type the unlock code: 'hack42'", "color: #6b7280; font-size: 10px; font-style: italic;");
   console.log("%c> Step 2: Look for the input field in the bottom-right corner", "color: #6b7280; font-size: 10px; font-style: italic;");
+  
+  console.log("%cAnomaly #4 (Computer Vision):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> The UI rendering pipeline has been compromised by a YOLO model. Type 'vision' to see how the neural network perceives the DOM.", styleBody);
+  console.log("%c> Watch as the model classifies your portfolio components with ML-themed labels and confidence scores.", "color: #6b7280; font-size: 10px; font-style: italic;");
 console.groupEnd();
 // ------------------------
 
