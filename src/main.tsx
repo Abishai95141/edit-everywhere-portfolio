@@ -27,7 +27,7 @@ console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer
   console.log("%c> The rendering engine reacts to the 'Konami Code' (↑↑↓↓←→←→BA). Unlocks 'Matrix Mode'.", styleBody);
   
   console.log("%cAnomaly #2 (Navigation):", "color: #f59e0b; font-weight:bold;");
-  console.log("%c> The 404 page is acting strange. It might be hallucinating a route called '/terminal'.", styleBody);
+  console.log("%c> The keyboard input buffer is leaking. Try typing the word 'Secrets' anywhere on the page.", styleBody);
 
   console.log("%cAnomaly #3 (Security):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The Contact Section has a prompt injection vulnerability. Try telling it to 'ignore previous instructions'.", styleBody);
