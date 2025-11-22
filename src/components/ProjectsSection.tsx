@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+import InfiniteMenu from "./InfiniteMenu";
 
 interface Project {
   title: string;
@@ -55,6 +54,14 @@ const projects: Project[] = [
 ];
 
 export const ProjectsSection = () => {
+  // Map the projects to the format required by InfiniteMenu
+  const menuItems = projects.map(project => ({
+    image: project.image,
+    link: project.link,
+    title: project.title,
+    description: project.description
+  }));
+
   return (
     <section id="projects" className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
@@ -72,78 +79,10 @@ export const ProjectsSection = () => {
           <div className="w-20 h-1 bg-foreground"></div>
         </motion.div>
 
-        {/* Scroll Stack */}
-        <ScrollStack
-          itemDistance={50}
-          itemScale={0.05}
-          itemStackDistance={40}
-          stackPosition="15%"
-          scaleEndPosition="10%"
-          baseScale={0.92}
-        >
-          {projects.map((project, index) => (
-            <ScrollStackItem key={index} itemClassName="!p-0">
-              <motion.div
-                className={`h-full flex flex-col md:flex-row gap-8 p-8 md:p-12 ${
-                  project.bgColor === "black" ? "bg-black" : "bg-zinc-800"
-                } text-white`}
-                whileHover={{ 
-                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4)",
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {/* Left Column - Content */}
-                <div className="flex-1 flex flex-col justify-between min-w-0">
-                  <div>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                      {project.title}
-                    </h3>
-                    
-                    <a 
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors mb-6"
-                    >
-                      View Project
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-
-                    <p className="text-base md:text-lg text-gray-300 mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-3">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex}
-                          className="px-3 py-1 bg-white/10 text-white text-sm rounded-full border border-white/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column - Image */}
-                <div className="flex-1 overflow-hidden rounded-lg min-w-0">
-                  <motion.img 
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  />
-                </div>
-              </motion.div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+        {/* Infinite Menu Container - Height is required for the canvas */}
+        <div className="w-full h-[600px] md:h-[800px] relative rounded-xl overflow-hidden border border-border/50 bg-black/5">
+          <InfiniteMenu items={menuItems} />
+        </div>
       </div>
     </section>
   );
