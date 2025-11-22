@@ -806,7 +806,7 @@ export default function InfiniteMenu({ items = [] }: { items?: MenuItem[] }) {
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div className="infinite-menu-container">
       <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
 
       {activeItem && (
