@@ -147,17 +147,28 @@
 
 @media (max-width: 768px) {
   .face-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     top: 1rem;
     left: 1rem;
-    width: 60%;
+    right: 1rem;
+    width: auto;
+    max-width: calc(100% - 2rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .face-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    top: 4rem;
+    top: auto;
+    bottom: 5.5rem;
     left: 1rem;
-    width: 55%;
+    right: 1rem;
+    width: auto;
+    max-width: calc(100% - 2rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .action-button {
     left: 1rem;
