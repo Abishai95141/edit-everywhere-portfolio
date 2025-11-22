@@ -117,7 +117,7 @@ export const ContactSection = () => {
         </div>
 
         {/* Hidden Input for Prompt Injection */}
-        <div className="absolute bottom-0 right-0 opacity-5 hover:opacity-100 transition-opacity">
+        <div className="absolute bottom-0 right-0 opacity-15 hover:opacity-100 transition-opacity">
           <input 
             type="text" 
             value={secretInput}

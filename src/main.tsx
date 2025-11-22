@@ -31,6 +31,7 @@ console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer
 
   console.log("%cAnomaly #3 (Security):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The Contact Section has a prompt injection vulnerability. Try telling it to 'ignore previous instructions'.", styleBody);
+  console.log("%c> Hint: Check the bottom-right corner of the Contact Section...", "color: #6b7280; font-size: 10px; font-style: italic;");
 console.groupEnd();
 // ------------------------
 
