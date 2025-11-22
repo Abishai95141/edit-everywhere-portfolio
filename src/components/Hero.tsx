@@ -70,10 +70,10 @@ export const Hero = () => {
 
       <div id="home" className="relative min-h-screen bg-background overflow-hidden">
       {/* Hero Content */}
-      <div className="container mx-auto px-4 md:px-8 lg:px-16 pt-32 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 pt-32 pb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
           {/* Left Column */}
-          <motion.div className="flex flex-col justify-center space-y-8" initial={{
+          <motion.div className="flex flex-col justify-center space-y-6 sm:space-y-8" initial={{
           opacity: 0,
           x: -50
         }} animate={{
@@ -85,7 +85,7 @@ export const Hero = () => {
         }}>
             {/* Name */}
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-tight break-words">
                 <FuzzyText baseIntensity={0.2} enableHover={true}>
                   Abishai K C
                 </FuzzyText>
@@ -93,12 +93,12 @@ export const Hero = () => {
             </div>
 
             {/* Caption */}
-            <div className="text-2xl md:text-3xl lg:text-4xl text-foreground/80 font-light">
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground/80 font-light">
               <DecryptedText text="Designing Intelligence" animateOn="view" revealDirection="center" speed={100} />
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4 pt-4">
               <StarBorder 
                 as="a" 
                 href="https://docs.google.com/document/d/1AsicPsBRfFuWLMxxE7iLOitjtabVr4zJ/edit?usp=sharing&ouid=104354809342922244957&rtpof=true&sd=true"
@@ -133,7 +133,7 @@ export const Hero = () => {
           duration: 0.8,
           delay: 0.4
         }}>
-            <div className="relative w-full max-w-xl aspect-square">
+            <div className="relative w-full max-w-md lg:max-w-xl aspect-square mx-auto lg:mx-0">
               {/* Gradient overlay for fade effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
               
@@ -149,15 +149,15 @@ export const Hero = () => {
               delay: 0.6
             }} />
 
-              {/* Decorative elements */}
-              <motion.div className="absolute -top-4 -right-4 w-32 h-32 border-2 border-foreground/20 rounded-full" animate={{
+              {/* Decorative elements - Hidden on mobile to prevent overflow */}
+              <motion.div className="hidden sm:block absolute -top-4 -right-4 w-24 h-24 lg:w-32 lg:h-32 border-2 border-foreground/20 rounded-full" animate={{
               rotate: 360
             }} transition={{
               duration: 20,
               repeat: Infinity,
               ease: "linear"
             }} />
-              <motion.div className="absolute -bottom-4 -left-4 w-24 h-24 border-2 border-foreground/20 rounded-full" animate={{
+              <motion.div className="hidden sm:block absolute -bottom-4 -left-4 w-20 h-20 lg:w-24 lg:h-24 border-2 border-foreground/20 rounded-full" animate={{
               rotate: -360
             }} transition={{
               duration: 15,
