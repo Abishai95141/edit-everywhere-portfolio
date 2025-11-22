@@ -814,7 +814,7 @@ export default function InfiniteMenu({ items = [] }: { items?: MenuItem[] }) {
           <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>{activeItem.title}</h2>
           <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}> {activeItem.description}</p>
           <button onClick={handleButtonClick} className={`action-button ${isMoving ? 'inactive' : 'active'}`}>
-            <p className="action-button-icon">&#x2197;</p>
+            <p className="action-button-text">Project Link</p>
           </button>
         </>
       )}
