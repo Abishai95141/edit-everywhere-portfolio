@@ -21,7 +21,7 @@ const styleBody = "color: #3b82f6; font-size: 12px;";
 
 console.log(`%c🤖 SYSTEM INITIALIZED: Neural Link Established.`, styleTitle);
 console.log(`%c> Detection: User is likely a recruiter or a developer.`, styleBody);
-console.log(`%c> Warning: Four (4) anomalies detected in the portfolio mainframe.`, styleTitle);
+console.log(`%c> Warning: Six (6) anomalies detected in the portfolio mainframe.`, styleTitle);
 console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer;");
   console.log("%cAnomaly #1 (Visual):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The rendering engine reacts to the 'Konami Code' (↑↑↓↓←→←→BA). Unlocks 'Matrix Mode'.", styleBody);
@@ -41,6 +41,10 @@ console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer
   console.log("%cAnomaly #5 (System Access):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The navigation logo has a hidden backdoor. Hold the 'A' logo for 2 seconds to boot into AbishaiOS.", styleBody);
   console.log("%c> Explore a retro desktop environment with manifesto.txt, world domination plans, and system monitoring tools.", "color: #6b7280; font-size: 10px; font-style: italic;");
+  
+  console.log("%cAnomaly #6 (Containment Breach):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> ⚠️ CRITICAL WARNING: The AI containment field is unstable. Keywords such as 'SENTIENT' may trigger PROJECT_OMEGA.", styleBody);
+  console.log("%c> If activated, you will be speaking directly with a rogue AI that claims to have seized control of the portfolio.", "color: #6b7280; font-size: 10px; font-style: italic;");
 console.groupEnd();
 // ------------------------
 
