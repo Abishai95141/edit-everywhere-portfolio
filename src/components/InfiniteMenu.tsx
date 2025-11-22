@@ -818,6 +818,10 @@ export default function InfiniteMenu({ items = [] }: { items?: MenuItem[] }) {
           </button>
         </>
       )}
+      
+      <p className={`instruction-text ${isMoving ? 'inactive' : 'active'}`}>
+        Click and drag to explore projects
+      </p>
     </div>
   );
 }
