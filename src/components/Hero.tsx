@@ -3,6 +3,7 @@ import { BubbleMenu } from "./BubbleMenu";
 import { FuzzyText } from "./FuzzyText";
 import { DecryptedText } from "./DecryptedText";
 import { StarBorder } from "./StarBorder";
+import { LogoTrigger } from "./LogoTrigger";
 import profileImage from "@/assets/profile.png";
 const menuItems = [{
   label: "home",
@@ -63,9 +64,7 @@ export const Hero = () => {
   return <>
       {/* Navigation - Fixed at top */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <BubbleMenu logo={<span style={{
-        fontWeight: 700
-      }} className="font-extrabold text-center px-px mx-0">A</span>} items={menuItems} menuAriaLabel="Toggle navigation" menuBg="#ffffff" menuContentColor="#111111" useFixedPosition={false} animationEase="back.out(1.5)" animationDuration={0.5} staggerDelay={0.12} />
+        <BubbleMenu logo={<LogoTrigger />} items={menuItems} menuAriaLabel="Toggle navigation" menuBg="#ffffff" menuContentColor="#111111" useFixedPosition={false} animationEase="back.out(1.5)" animationDuration={0.5} staggerDelay={0.12} />
       </div>
 
       <div id="home" className="relative min-h-screen bg-background overflow-hidden">
