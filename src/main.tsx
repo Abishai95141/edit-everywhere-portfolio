@@ -37,6 +37,10 @@ console.groupCollapsed("%c[View Anomaly Logs]", "color: #a855f7; cursor: pointer
   console.log("%cAnomaly #4 (Computer Vision):", "color: #f59e0b; font-weight:bold;");
   console.log("%c> The UI rendering pipeline has been compromised by a YOLO model. Type 'vision' to see how the neural network perceives the DOM.", styleBody);
   console.log("%c> Watch as the model classifies your portfolio components with ML-themed labels and confidence scores.", "color: #6b7280; font-size: 10px; font-style: italic;");
+  
+  console.log("%cAnomaly #5 (System Access):", "color: #f59e0b; font-weight:bold;");
+  console.log("%c> The navigation logo has a hidden backdoor. Hold the 'A' logo for 2 seconds to boot into AbishaiOS.", styleBody);
+  console.log("%c> Explore a retro desktop environment with manifesto.txt, world domination plans, and system monitoring tools.", "color: #6b7280; font-size: 10px; font-style: italic;");
 console.groupEnd();
 // ------------------------
 
